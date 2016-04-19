@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SitUp</string>
+    <string name ="sport">运动</string>
+    <string name="message">消息</string>
+    <string name="mine">我的</string>
+    <string name="login">登入/注册</string>
+</resources>
