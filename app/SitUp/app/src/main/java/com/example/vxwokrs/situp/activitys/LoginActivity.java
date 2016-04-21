@@ -1,6 +1,7 @@
 package com.example.vxwokrs.situp.activitys;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.vxwokrs.situp.R;
+import com.example.vxwokrs.situp.application.SitupPreferenceUtils;
 
 import rx.Observable;
 import rx.Observer;
@@ -39,7 +41,14 @@ public class LoginActivity extends BaseActivity {
 
     public void login(View view)
     {
-
+        //TODO:用retrofit来登入
+        Intent intent=new Intent();
+        Bundle bundle=new Bundle();
+        bundle.putString("userName",userNameTv.getText().toString());
+        intent.putExtras(bundle);
+        setResult(RESULT_OK, intent);
+        finish();
+        SitupPreferenceUtils.getInstance().setLoginedUserName(userNameTv.getText().toString());
     }
 
     public void register(View view)

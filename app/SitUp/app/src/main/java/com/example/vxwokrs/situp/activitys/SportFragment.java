@@ -2,6 +2,7 @@ package com.example.vxwokrs.situp.activitys;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.vxwokrs.situp.R;
 
@@ -17,6 +19,7 @@ import com.example.vxwokrs.situp.R;
  */
 public class SportFragment extends Fragment {
     private final String TAG=this.getClass().getSimpleName().toString();
+    private Button startSportBtn;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -29,6 +32,14 @@ public class SportFragment extends Fragment {
         //return super.onCreateView(inflater, container, savedInstanceState);
         View view=inflater.inflate(R.layout.fragment_sport,container,false);
         Log.e(TAG, "---onCreateView---");
+        startSportBtn=(Button)view.findViewById(R.id.sportBtn);
+        startSportBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),SitupActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

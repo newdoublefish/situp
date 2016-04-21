@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.vxwokrs.situp.R;
+import com.example.vxwokrs.situp.application.SitupPreferenceUtils;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -25,6 +27,7 @@ public class MineFragment extends Fragment {
     private final String TAG=this.getClass().getSimpleName().toString();
     private SimpleDraweeView simpleDraweeView;
     private Button btn;
+    private TextView loginedUserNameTv;
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -53,10 +56,28 @@ public class MineFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(),LoginActivity.class);
-                startActivityForResult(intent,LOGIN_REQUEST_CODE);
+                if(SitupPreferenceUtils.getInstance().getLoginedUserName()==null)
+                {
+                    Intent intent=new Intent(getActivity(),LoginActivity.class);
+                    startActivityForResult(intent,LOGIN_REQUEST_CODE);
+                }else
+                {
+                    SitupPreferenceUtils.getInstance().clearAll();
+                    getActivity().finish();
+                    Intent intent=new Intent(getActivity(),MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
+        loginedUserNameTv=(TextView)view.findViewById(R.id.loginedUserName);
+
+        if(SitupPreferenceUtils.getInstance().getLoginedUserName()!=null)
+        {
+            loginedUserNameTv.setVisibility(View.VISIBLE);
+            loginedUserNameTv.setText(SitupPreferenceUtils.getInstance().getLoginedUserName());
+            btn.setText("登出");
+        }
+
         initView(view);
         Log.e(TAG, "---onCreateView---");
         return view;
@@ -68,9 +89,14 @@ public class MineFragment extends Fragment {
         switch (requestCode)
         {
             case LOGIN_REQUEST_CODE:
-                if(requestCode==getActivity().RESULT_OK)
+                if(resultCode==getActivity().RESULT_OK)
                 {
-                    Log.e(TAG,"login---success!!!");
+                    Log.e(TAG, "login---success!!!");
+                    Bundle bundle=data.getExtras();
+                    btn.setText("登出");
+                    loginedUserNameTv.setVisibility(View.VISIBLE);
+                    loginedUserNameTv.setText(bundle.getString("userName"));
+
                 }
                 break;
             default:

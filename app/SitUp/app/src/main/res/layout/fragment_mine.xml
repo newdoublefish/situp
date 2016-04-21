@@ -8,6 +8,16 @@
         android:layout_width="match_parent"
         android:background="@color/menu_bar_pressed"
         android:layout_height="200dp">
+        <TextView
+            android:id="@+id/loginedUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_above="@+id/main_adv"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            android:layout_marginBottom="5dp"
+            />
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/main_adv"
             android:layout_width="120dp"

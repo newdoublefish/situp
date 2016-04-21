@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@android:color/white"
     android:layout_height="match_parent">
-    <TextView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sportFragment"
-        android:layout_gravity="center_vertical"
-        />
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/holo_blue_dark"
+            android:text="快快体验吧"
+            />
+        <Button
+            android:id="@+id/sportBtn"
+            android:text="开始运动"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
+            />
+
+        </RelativeLayout>
 </LinearLayout>
